@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+    
+    <constant name="struts.convention.default.parent.package" value="stv"/>
+    <package name="stv" extends="struts-default">
+                
+        <interceptors>
+            <interceptor name="myLoginInt" class="stv.interceptors.MyLoginInterceptor"/>
+            <interceptor-stack name="loggingStack">
+                <interceptor-ref name="myLoginInt" />
+                <interceptor-ref name="defaultStack" />
+            </interceptor-stack>
+            
+        </interceptors>
+    
+        <default-interceptor-ref name="loggingStack"></default-interceptor-ref>
+
+        <default-action-ref name="myLogin"/>
+        
+        
+        <action name="myLogin" class="stv.actions.LoginAction">
+            
+            <result name="success">/WEB-INF/content/entry_page.jsp</result>
+            <result name="input">/WEB-INF/content/general_page.jsp</result>
+        </action>
+       
+        <action name="myLogout" class="stv.actions.LogoutAction">
+            <result name="success">/WEB-INF/content/general_page.jsp</result>
+            <result name="input">/WEB-INF/content/general_page.jsp</result>
+        </action>
+        
+        <action name="first_secret" class="stv.actions.FirstSecretAction">
+            <!--<interceptor-ref name="loggingStack"></interceptor-ref>-->
+            <result name="success">/WEB-INF/content/first_secret.jsp</result>
+            <result name="input">/WEB-INF/content/general_page.jsp</result>
+            
+        </action>
+          
+        <action name="second_secret" class="stv.actions.SecondSecretAction">
+            <!--<interceptor-ref name="loggingStack"></interceptor-ref>-->
+            
+            <result name="success">/WEB-INF/content/second_secret.jsp</result>
+            <result name="input">/WEB-INF/content/general_page.jsp</result>
+            
+        </action>
+        
+        
+        <action name="outSecret" class="stv.actions.OutSecretAction">
+            <!--<interceptor-ref name="loggingStack"></interceptor-ref>-->
+            <result name="success">/WEB-INF/content/entry_page.jsp</result>
+            <result name="input">/WEB-INF/content/general_page.jsp</result>
+        </action>
+
+<!-- -->
+<!--
+       -->
+    </package>
+</struts>
